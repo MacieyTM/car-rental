@@ -1,5 +1,5 @@
 <div style="text-align: center;">
-  <img src="./assets/car-rental-logo.png" width="180" alt="Car Rental logo">
+  <img src="./assets/car-renting.jpg" width="180" alt="Car Rental logo">
 </div>
 
 # 🚗 Car Rental
