@@ -1,6 +1,5 @@
 <main class="page">
   <div class="container">
-
     <header class="header">
       <div>
         <p class="eyebrow">Vehicle booking</p>
@@ -8,6 +7,16 @@
         <p class="subtitle">Find and reserve the right car for your trip.</p>
       </div>
     </header>
+
+    <section class="hero">
+      <img src="assets/car-renting.jpg" alt="Car available for rent" class="hero-image" />
+
+      <div class="hero-overlay">
+        <span class="hero-tag">Your journey starts here</span>
+        <h2>Find the perfect ride.</h2>
+        <p>Comfort, flexibility, and freedom on every journey.</p>
+      </div>
+    </section>
 
     <section class="card booking-card">
       <div class="section-header">
@@ -29,17 +38,30 @@
 
         <label>
           <span>Date</span>
-          <input type="date" [ngModel]="selectedDate()" (ngModelChange)="selectedDate.set($event)" />
+          <input
+            type="date"
+            [ngModel]="selectedDate()"
+            (ngModelChange)="selectedDate.set($event)"
+          />
         </label>
 
         <label>
           <span>Time</span>
-          <input type="time" [ngModel]="selectedTime()" (ngModelChange)="selectedTime.set($event)" />
+          <input
+            type="time"
+            [ngModel]="selectedTime()"
+            (ngModelChange)="selectedTime.set($event)"
+          />
         </label>
 
         <label>
           <span>Number of days</span>
-          <input type="number" min="1" [ngModel]="numberOfDays()" (ngModelChange)="numberOfDays.set($event)" />
+          <input
+            type="number"
+            min="1"
+            [ngModel]="numberOfDays()"
+            (ngModelChange)="numberOfDays.set($event)"
+          />
         </label>
       </div>
 
@@ -54,9 +76,9 @@
       </div>
 
       @if (message()) {
-      <div class="message">
-        {{ message() }}
-      </div>
+        <div class="message">
+          {{ message() }}
+        </div>
       }
     </section>
 
@@ -109,32 +131,29 @@
       </div>
 
       @if (reservations().length === 0) {
-      <div class="empty-state">
-        <span>📅</span>
-        <p>No reservations yet.</p>
-      </div>
-      } @else {
-      <div class="reservations">
-        @for (reservation of reservations(); track $index) {
-        <div class="reservation">
-          <div class="reservation-icon">🚘</div>
-
-          <div class="reservation-details">
-            <strong>{{ reservation.carType }}</strong>
-
-            <span>
-              {{ reservation.startDate | date: 'yyyy-MM-dd HH:mm' }}
-            </span>
-          </div>
-
-          <div class="reservation-duration">
-            {{ reservation.numberOfDays }} day(s)
-          </div>
+        <div class="empty-state">
+          <span>📅</span>
+          <p>No reservations yet.</p>
         </div>
-        }
-      </div>
+      } @else {
+        <div class="reservations">
+          @for (reservation of reservations(); track $index) {
+            <div class="reservation">
+              <div class="reservation-icon">🚘</div>
+
+              <div class="reservation-details">
+                <strong>{{ reservation.carType }}</strong>
+
+                <span>
+                  {{ reservation.startDate | date: 'yyyy-MM-dd HH:mm' }}
+                </span>
+              </div>
+
+              <div class="reservation-duration">{{ reservation.numberOfDays }} day(s)</div>
+            </div>
+          }
+        </div>
       }
     </section>
-
   </div>
 </main>
