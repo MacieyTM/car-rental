@@ -1,8 +1,6 @@
-# 🚗 Car Rental
+![Car Rental logo](./public/assets/car-renting.jpg)
 
-<!-- <p align="center"> -->
-  <img src="./assets/car-rental-logo.png" width="180" alt="Car Rental logo">
-<!-- </p> -->
+# 🚗 Car Rental
 
 A small car rental application built with Angular as a technical exercise.
 
