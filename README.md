@@ -1,4 +1,6 @@
-![Car Rental logo](./public/assets/car-renting.jpg)
+<p>
+  <img src="./public/assets/car-renting.jpg" width="180" alt="Car Rental logo">
+</p>
 
 # 🚗 Car Rental
 
