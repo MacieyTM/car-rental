@@ -1,4 +1,8 @@
-# Car Rental
+# 🚗 Car Rental
+
+<!-- <p align="center"> -->
+  <img src="./assets/car-rental-logo.png" width="180" alt="Car Rental logo">
+<!-- </p> -->
 
 A small car rental application built with Angular as a technical exercise.
 
@@ -7,15 +11,22 @@ The application allows users to check car availability and create reservations f
 ## Features
 
 - Reserve a car for a selected number of days
+
 - Choose a car type:
   - Sedan
   - SUV
   - Van
+
 - Check car availability before making a reservation
+
 - Handle a limited fleet of cars for each type
+
 - Prevent overlapping reservations when all cars of a given type are already reserved
+
 - Validate reservation data
+
 - Display current reservations in the UI
+
 - Unit, integration and component tests
 
 ## Tech Stack
@@ -30,6 +41,7 @@ The application allows users to check car availability and create reservations f
 
 ```text
 src/app/
+
 ├── models/
 │   ├── car-fleet.ts
 │   ├── car-fleet.spec.ts

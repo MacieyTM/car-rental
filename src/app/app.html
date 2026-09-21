@@ -1,66 +1,140 @@
-<main class="container">
-  <h1>Car Rental</h1>
+<main class="page">
+  <div class="container">
 
-  <div class="form">
-    <label>
-      Car type
-      <select [ngModel]="selectedType()" (ngModelChange)="selectedType.set($event)">
-        <option [ngValue]="CarType.Sedan">Sedan</option>
-        <option [ngValue]="CarType.SUV">SUV</option>
-        <option [ngValue]="CarType.Van">Van</option>
-      </select>
-    </label>
+    <header class="header">
+      <div>
+        <p class="eyebrow">Vehicle booking</p>
+        <h1>Car Rental</h1>
+        <p class="subtitle">Find and reserve the right car for your trip.</p>
+      </div>
+    </header>
 
-    <label>
-      Date
-      <input type="date" [ngModel]="selectedDate()" (ngModelChange)="selectedDate.set($event)" />
-    </label>
+    <section class="card booking-card">
+      <div class="section-header">
+        <div>
+          <h2>Make a reservation</h2>
+          <p>Select your car and rental period.</p>
+        </div>
+      </div>
 
-    <label>
-      Time
-      <input type="time" [ngModel]="selectedTime()" (ngModelChange)="selectedTime.set($event)" />
-    </label>
+      <div class="form">
+        <label>
+          <span>Car type</span>
+          <select [ngModel]="selectedType()" (ngModelChange)="selectedType.set($event)">
+            <option [ngValue]="CarType.Sedan">Sedan</option>
+            <option [ngValue]="CarType.SUV">SUV</option>
+            <option [ngValue]="CarType.Van">Van</option>
+          </select>
+        </label>
 
-    <label>
-      Number of days
-      <input type="number" min="1" [ngModel]="numberOfDays()" (ngModelChange)="numberOfDays.set($event)" />
-    </label>
+        <label>
+          <span>Date</span>
+          <input type="date" [ngModel]="selectedDate()" (ngModelChange)="selectedDate.set($event)" />
+        </label>
 
-    <div class="actions">
-      <button type="button" (click)="checkAvailability()">Check availability</button>
+        <label>
+          <span>Time</span>
+          <input type="time" [ngModel]="selectedTime()" (ngModelChange)="selectedTime.set($event)" />
+        </label>
 
-      <button type="button" (click)="reserveCar()">Reserve car</button>
-    </div>
+        <label>
+          <span>Number of days</span>
+          <input type="number" min="1" [ngModel]="numberOfDays()" (ngModelChange)="numberOfDays.set($event)" />
+        </label>
+      </div>
 
-    @if (message()) {
-    <p>{{ message() }}</p>
-    }
+      <div class="actions">
+        <button class="button button-secondary" type="button" (click)="checkAvailability()">
+          Check availability
+        </button>
+
+        <button class="button button-primary" type="button" (click)="reserveCar()">
+          Reserve car
+        </button>
+      </div>
+
+      @if (message()) {
+      <div class="message">
+        {{ message() }}
+      </div>
+      }
+    </section>
+
+    <section class="card">
+      <div class="section-header">
+        <div>
+          <h2>Fleet</h2>
+          <p>Currently available vehicles.</p>
+        </div>
+      </div>
+
+      <div class="fleet">
+        <div class="fleet-item">
+          <span class="fleet-icon">🚗</span>
+          <div>
+            <strong>Sedan</strong>
+            <span>Available</span>
+          </div>
+          <b>{{ fleet.getCount(CarType.Sedan) }}</b>
+        </div>
+
+        <div class="fleet-item">
+          <span class="fleet-icon">🚙</span>
+          <div>
+            <strong>SUV</strong>
+            <span>Available</span>
+          </div>
+          <b>{{ fleet.getCount(CarType.SUV) }}</b>
+        </div>
+
+        <div class="fleet-item">
+          <span class="fleet-icon">🚐</span>
+          <div>
+            <strong>Van</strong>
+            <span>Available</span>
+          </div>
+          <b>{{ fleet.getCount(CarType.Van) }}</b>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-header">
+        <div>
+          <h2>Reservations</h2>
+          <p>Your current bookings.</p>
+        </div>
+
+        <span class="reservation-count">{{ reservations().length }}</span>
+      </div>
+
+      @if (reservations().length === 0) {
+      <div class="empty-state">
+        <span>📅</span>
+        <p>No reservations yet.</p>
+      </div>
+      } @else {
+      <div class="reservations">
+        @for (reservation of reservations(); track $index) {
+        <div class="reservation">
+          <div class="reservation-icon">🚘</div>
+
+          <div class="reservation-details">
+            <strong>{{ reservation.carType }}</strong>
+
+            <span>
+              {{ reservation.startDate | date: 'yyyy-MM-dd HH:mm' }}
+            </span>
+          </div>
+
+          <div class="reservation-duration">
+            {{ reservation.numberOfDays }} day(s)
+          </div>
+        </div>
+        }
+      </div>
+      }
+    </section>
+
   </div>
-
-  <section>
-    <h2>Fleet</h2>
-
-    <p>Available capacity:</p>
-
-    <ul>
-      <li>Sedan: {{ fleet.getCount(CarType.Sedan) }}</li>
-      <li>SUV: {{ fleet.getCount(CarType.SUV) }}</li>
-      <li>Van: {{ fleet.getCount(CarType.Van) }}</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Reservations</h2>
-
-    @if (reservations().length === 0) {
-    <p>No reservations yet.</p>
-    } @else {
-    @for (reservation of reservations(); track $index) {
-    <p>
-      {{ reservation.carType }} — {{ reservation.startDate | date: 'yyyy-MM-dd HH:mm' }} —
-      {{ reservation.numberOfDays }} day(s)
-    </p>
-    }
-    }
-  </section>
 </main>
